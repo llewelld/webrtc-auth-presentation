@@ -61,7 +61,7 @@ The standard tackles streaming, but not authentication
 
 This leaves it open for applications to layer their own authentication approach on top
 
-In the paper we discuss videocalls, but also interesting for IoT
+We'll look at IoT applications, but discuss videocalls in the paper
 
 \end{frame}
 \note{
@@ -71,6 +71,8 @@ The purpose of the work is to provide a means of allowing simple, proximity-base
 The motivation for this is that WebRTC is a nice P2P protocol, but doesn't provide an authentication mechanism. Consequently some kind of P2P pairing mechanism is needed to bootstrap the WebRTC session.
 
 As well as providing the required security/privacy property, the scheme must also integrate with the existing WebRTC standard without changes.
+
+In the paper we discuss videocalls, but in this presentation we'll apply the protocol to IoT instead, since our focussed has moved onto this as a more interesting usecase.
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -138,7 +140,7 @@ The diagram briefly summarises how these standards work together.
 \item WebRTC provides a means of creating the offer and response data structures, but it doesn't provide a mechanism for sharing them. That's the part we'll be focussing on.
 \item The ICE exchange is for setting up the P2P connection, traversing any NATs/firewalls.
 \item DTLS handshake is similar to TLS but for UDP. WebRTC only uses the handshake to establish a shared key $m$ between the two devices.
-\item Once the key is established it's used to establish a secure SRTP and SRTCP stream between them. These can transfer any data, but the obvious types are video and audio data.
+\item Once the key is established it's used to establish a secure stream between them. These can transfer any data, but the obvious types are video and audio data. For video SRTP and SRTCP would be used, but for data SCTP.
 \end{enumerate}
 }
 
@@ -181,7 +183,7 @@ However, the fact there's no mandated authentication mechanism means that the pr
 
 The obvious method would be to leverage an existing relationship through a third-party service (e.g. Google+ login).
 
-However, we want to provide a method that allows sessions to be established between devices in a way that prevents the third-party service tracking the user or violating the security.s
+However, we want to provide a method that allows sessions to be established between devices in a way that prevents the third-party service tracking the user or violating the security.
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -241,7 +243,7 @@ The text is very small, but I've highlighted the important parts in red.
 
 The DTLS key establishment relies on public/private key pairs. Essentially the devices authenticate themselves using RSA certificates in steps 17 and 18). From these a session key $m$ is generated using a PRF (steps 20, 21, 24).
 
-A field is also included in the WRTCOffer for exchanging a hash of the public keys in advance (steps 5 and 8). These can then be checked after the DTLS handshake to ensure the certificates belong to the correct identities (steps 22, 23).
+A field is also included in the WRTCoffer for exchanging a hash of the public keys in advance (steps 5 and 8). These can then be checked after the DTLS handshake to ensure the certificates belong to the correct identities (steps 22, 23).
 
 We want to replace steps 1-11, which here rely on a third party service we've previously authenticated to.
 }
@@ -271,9 +273,9 @@ In a novel step the approach avoids the need for pre-established identities by u
 
 The QR code is used to provide a `secure' channel between the two devices that the user wants to pair.
 
-From the user's point of view, they run a javascript app on both devices. On one device the javascript displays a QR code. On the other it provides a scanner the user scans it with.
+From the user's point of view, they run code on both devices. On one device the code displays a QR code. On the other it provides a scanner the user scans it with.
 
-From the user's perspective this completes the process. The photos are showing the yopet.us implementation.
+From the user's perspective this completes the process. The photos are showing the a Beagleboard implementation that transfers voltage readings.
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -380,7 +382,7 @@ We need mutual authentication, but does this achieve it?
 
 Identities of $A$ and $B$ sent in the clear in steps 1 and 2.
 
-We have to make some reasonable assumptions about the security of the QR-code channel in step 3. In particular, our thread model assumes the two devices are trusted (not compromised) and that the Javascript sent to the browser can be trusted (e.g. it can be checked on the device).
+We have to make some reasonable assumptions about the security of the QR code channel in step 3. In particular, our threat model assumes the two devices are trusted (not compromised) and that the code running on each device can be trusted (e.g. it can be checked on the device).
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
