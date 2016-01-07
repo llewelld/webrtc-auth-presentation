@@ -1,4 +1,4 @@
-\documentclass[handout, notes=show]{beamer}
+\documentclass[handout, notes=hide]{beamer}
 
 \usepackage{attrib}
 \graphicspath{{./figures/}}
@@ -61,6 +61,8 @@ The standard tackles streaming, but not authentication
 
 This leaves it open for applications to layer their own authentication approach on top
 
+In the paper we discuss videocalls, but also interesting for IoT
+
 \end{frame}
 \note{
 \setlength{\parskip}{0.5em}
@@ -90,6 +92,7 @@ Built using a smorgasbord of existing standards
 \begin{enumerate}
 \item ICE - for NAT tranversal
 \item DTLS - for establishing secure sessions
+\item SCTP - for data streaming
 \item SRTP - for real-time streaming
 \item SRTCP - for protected control messaging
 \end{enumerate}
@@ -111,6 +114,7 @@ In fact, WebRTC is really a mashup of existing standards.
 \begin{enumerate}
 \item ICE - Interactive Connectivity Establishment
 \item DTLS - Datagram Transport Layer Security
+\item SCTP - Stream Control Transmission Protocol
 \item SRTP - Secure Real-time Transort Protocol
 \item SRTCP - Secure Real Time Control Protocol
 \end{enumerate}
@@ -190,7 +194,7 @@ However, we want to provide a method that allows sessions to be established betw
 \begin{column}[T]{0.6\textwidth}
 \setlength{\parskip}{0.5em}
 
-Develop an authentication/pairing protocol between two devices
+Develop an authentication/pairing protocol between two IoT devices
 
 Maintain security and privacy
 
@@ -247,11 +251,14 @@ We want to replace steps 1-11, which here rely on a third party service we've pr
 \framesubtitle{QR-Code Visual Channel for assymmetric pairing}
 
 \begin{columns}[T]
-\begin{column}[T]{0.5\textwidth}
-\includegraphics[width=1.0\textwidth]{pairing}
+\begin{column}[T]{0.33333\textwidth}
+\includegraphics[width=1.0\textwidth]{iot-screen}
 \end{column}
-\begin{column}[T]{0.5\textwidth}
-\includegraphics[width=1.0\textwidth]{paired}
+\begin{column}[T]{0.33333\textwidth}
+\includegraphics[width=1.0\textwidth]{iot-scan}
+\end{column}
+\begin{column}[T]{0.33333\textwidth}
+\includegraphics[width=1.0\textwidth]{iot-reading}
 \end{column}
 \end{columns}
 
@@ -276,7 +283,7 @@ From the user's perspective this completes the process. The photos are showing t
 %\framesubtitle{}
 \setlength{\parskip}{0.5em}
 
-Use a third-party signalling service for message passing (e.g. respoke.io)
+Use a third-party signalling service for message passing (e.g. \href{https://www.respoke.io}{\nolinkurl{respoke.io}})
 
 Service provides connection, 
 
@@ -514,7 +521,7 @@ Conclusion
 Future Work
 \begin{enumerate}
 \item Formal analysis using Strand-Spaces or BAN logic
-\item Application to IoT
+\item Explore IoT application space
 \item Usability testing
 \end{enumerate}
 
