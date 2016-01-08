@@ -57,7 +57,7 @@ WebRTC is now deployed in all the major modern browsers
 
 It provides a seamless way to perform P2P data streaming between browsers
 
-The standard tackles streaming, but not authentication
+The WebRTC standard tackles streaming, but not authentication
 
 This leaves it open for applications to layer their own authentication approach on top
 
@@ -68,11 +68,11 @@ We'll look at IoT applications, but discuss videocalls in the paper
 \setlength{\parskip}{0.5em}
 The purpose of the work is to provide a means of allowing simple, proximity-based authentication between paired devices for use with WebRTC.
 
-The motivation for this is that WebRTC is a nice P2P protocol, but doesn't provide an authentication mechanism. Consequently some kind of P2P pairing mechanism is needed to bootstrap the WebRTC session.
+The motivation for this is that WebRTC is a capable P2P protocol, but doesn't provide an authentication mechanism. Consequently some kind of P2P pairing mechanism is needed to bootstrap the WebRTC session.
 
 As well as providing the required security/privacy property, the scheme must also integrate with the existing WebRTC standard without changes.
 
-In the paper we discuss videocalls, but in this presentation we'll apply the protocol to IoT instead, since our focussed has moved onto this as a more interesting usecase.
+In the paper we discuss videocalls, but in this presentation we'll apply the protocol to IoT instead, since our focus has moved onto this as a more interesting usecase.
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -156,7 +156,7 @@ The diagram briefly summarises how these standards work together.
 
 Truly P2P, except the ICE/TURN relay
 
-Secured against eavesdroppin using UDP equivalent of TLS
+Secured against eavesdropping using UDP equivalent of TLS
 
 Self-generated and signed certificates (no CA)
 
@@ -205,7 +205,7 @@ Maintain security and privacy
 \item Encrypted communication
 \item Prevent middle-person attacks
 \item Minimise third-party trust requirements
-\item Prevent correlation across steams
+\item Prevent correlation across streams
 \end{enumerate}
 
 \end{column}
@@ -250,7 +250,7 @@ We want to replace steps 1-11, which here rely on a third party service we've pr
 
 \begin{frame}
 \frametitle{Pairing}
-\framesubtitle{QR-Code Visual Channel for assymmetric pairing}
+\framesubtitle{QR Code Visual Channel for asymmetric pairing}
 
 \begin{columns}[T]
 \begin{column}[T]{0.33333\textwidth}
@@ -398,7 +398,7 @@ Have achieved mutual authentication
 
 No middle-person attack to step 7
 
-WRTCanswer not integrity protected
+WRTCanswer integrity not protected
 \begin{enumerate}
 \item Must match WRTCoffer
 \item Susceptible to downgrade attack
@@ -446,7 +446,7 @@ There is a potential weakness with the integrity of the WRTCanswer data structur
 \begin{column}[T]{0.6\textwidth}
 \setlength{\parskip}{0.5em}
 
-Relay/replay phish
+Relay/replay phishing
 \begin{enumerate}
 \item QR code switched at step 3
 \item Mitigated by use of trusted devices
@@ -456,7 +456,7 @@ Relay/replay phish
 Relay hijack
 \begin{enumerate}
 \item Visual channel assumed private
-\item Can't complete DTlS handshake
+\item Can't complete DTLS handshake
 \end{enumerate}
 
 \end{column}
