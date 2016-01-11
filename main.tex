@@ -53,15 +53,15 @@ Talk duration is 22.5 minutes including questions (aim for 15 minutes, 8 or 9 sl
 %\framesubtitle{}
 \setlength{\parskip}{0.5em}
 
-WebRTC is now deployed in all the major modern browsers
+Provide a simple proximity-based pairing authentication mechanism to support WebRTC communication between devices
 
-It provides a seamless way to perform P2P data streaming between browsers
-
-The WebRTC standard tackles streaming, but not authentication
-
-This leaves it open for applications to layer their own authentication approach on top
+WebRTC provides a seamless way to perform P2P data streaming between devices
 
 We'll look at IoT applications, but discuss videocalls in the paper
+
+The WebRTC standard tackles secure data transfer, but not authentication
+
+This leaves it open for applications to layer their own authentication approach on top
 
 \end{frame}
 \note{
@@ -287,7 +287,7 @@ From the user's perspective this completes the process. The photos are showing t
 
 Use a third-party signalling service for message passing (e.g. \href{https://www.respoke.io}{\nolinkurl{respoke.io}})
 
-Service provides connection, 
+Service provides connection
 
 But no trust or privacy requirements
 
@@ -449,14 +449,16 @@ There is a potential weakness with the integrity of the WRTCanswer data structur
 Relay/replay phishing
 \begin{enumerate}
 \item QR code switched at step 3
+\item $A$ pairs with attacker's device
 \item Mitigated by use of trusted devices
-\item Requires user care (JS integrity)
+\item Requires device integrity
 \end{enumerate}
 
 Relay hijack
 \begin{enumerate}
+\item Attacker captures code at step 3
+\item Attacker pairs with $B$ before $A$
 \item Visual channel assumed private
-\item Can't complete DTLS handshake
 \end{enumerate}
 
 \end{column}
@@ -473,8 +475,6 @@ Our attacker model assumes the visual channel to be secure, but this won't preve
 Is there any potential for relay and replay attacks? These could have one of two outcomes. Either the user could be tricked into connecting to the wrong device, or an attacker could hijack the process, causing a similar result.
 
 The result would be the user ends up streaming data to/from the attacker's device, rather than the intended device.
-
-From the slide we can see this isn't possible in practice.
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -489,7 +489,7 @@ From the slide we can see this isn't possible in practice.
 
 Want to minimise trust
 
-Assume it's a malicious middle-person
+Assume $S$ is a malicious middle-person
 
 $S$ only needed during signalling, not for data streaming
 
